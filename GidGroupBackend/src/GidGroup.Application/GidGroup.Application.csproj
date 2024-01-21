@@ -16,8 +16,4 @@
     <ProjectReference Include="..\GidGroup.Domain\GidGroup.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\Recalls\Queries\" />
-  </ItemGroup>
-
 </Project>
