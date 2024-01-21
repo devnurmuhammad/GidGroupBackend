@@ -1,16 +1,16 @@
 ﻿using GidGroup.Domain.Enums;
+using MediatR;
 
-namespace GidGroup.Domain.Entities
+namespace GidGroup.Application.UseCases.Orders.Commands
 {
-    public class Order
+    public class CreateOrderCommand : IRequest
     {
-        public int Id { get; set; }
         public string Size { get; set; } = default!;
         public string Style { get; set; } = default!;
         public string WhenNeed { get; set; } = default!;
         public string Phone { get; set; } = default!;
         public string? Email { get; set; }
-        public DateTime Date { get; set; } = DateTime.UtcNow;
-        public StatusEnums.Status Status { get; set; } = StatusEnums.Status.Recieved;
+        public DateTime Date { get; set; }
+        public StatusEnums.Status Status { get; set; }
     }
 }
