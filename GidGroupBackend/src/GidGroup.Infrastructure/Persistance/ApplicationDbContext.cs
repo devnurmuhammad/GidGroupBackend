@@ -11,26 +11,26 @@ public class ApplicationDbContext : DbContext, IGidGroupApplicationDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
-        //Database.Migrate();
-        var databaseCreator = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
-        try
-        {
-            if (databaseCreator is null)
-            {
-                throw new Exception("Database Not Found!");
-            }
+      //  Database.Migrate();
+       // var databaseCreator = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
+    //    try
+    //    {
+    //        if (databaseCreator is null)
+    //        {
+    //            throw new Exception("Database Not Found!");
+    //        }
 
-            if (!databaseCreator.CanConnect())
-                databaseCreator.CreateAsync();
+    //        if (!databaseCreator.CanConnect())
+    //            databaseCreator.CreateAsync();
 
-            if (!databaseCreator.HasTables())
-                databaseCreator.CreateTablesAsync();
+    //        if (!databaseCreator.HasTables())
+    //            databaseCreator.CreateTablesAsync();
 
-    }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+    //}
+    //    catch (Exception ex)
+    //    {
+    //        Console.WriteLine(ex.Message);
+    //    }
     }
     //protected override void OnModelCreating(ModelBuilder modelBuilder)
     //{
