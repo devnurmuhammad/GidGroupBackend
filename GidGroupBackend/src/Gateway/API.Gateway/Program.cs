@@ -1,6 +1,5 @@
-using GidGroup.Application;
-using GidGroup.Infrastructure;
-using System.Text.Json.Serialization;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,18 +10,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddApplication();
 
+builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true)
+    .AddEnvironmentVariables();
 
-builder.Services.AddControllersWithViews()
-    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddOcelot(builder.Configuration);
 
-builder.Services.AddCors(op =>
-{
-    op.AddDefaultPolicy(x =>
-        x.AllowAnyHeader().AllowAnyOrigin());
-});
 
 var app = builder.Build();
 
@@ -33,10 +27,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
-app.UseCors();
 
 app.MapControllers();
+
+await app.UseOcelot();
 
 app.Run();

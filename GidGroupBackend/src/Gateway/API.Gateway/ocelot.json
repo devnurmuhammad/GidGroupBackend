@@ -1,0 +1,21 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/GC",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7092
+          //https://localhost:7092/api/Catalog/CreateCatalog
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Catalog/GetAllCatalog"
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:8015"
+  }
+} 
