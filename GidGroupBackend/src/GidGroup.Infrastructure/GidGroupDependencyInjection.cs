@@ -12,7 +12,7 @@ namespace GidGroup.Infrastructure
         {
             services.AddDbContext<IGidGroupApplicationDbContext, ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("ConnectionString"), options => options.EnableRetryOnFailure());
+                options.UseNpgsql(configuration.GetConnectionString("Postgres"), options => options.EnableRetryOnFailure());
             });
 
             return services;
